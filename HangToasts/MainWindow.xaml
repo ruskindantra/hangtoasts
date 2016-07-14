@@ -1,0 +1,13 @@
+﻿<Window x:Class="HangToasts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HangToasts"
+        mc:Ignorable="d"
+        Title="HangToasts" Height="70" Width="300" Icon="Resources/App.ico"
+        Closing="MainWindown_OnClosing" 
+        StateChanged="MainWindow_OnStateChanged" IsVisibleChanged="MainWindow_OnIsVisibleChanged"
+        Loaded="MainWindow_OnLoaded" ResizeMode="CanMinimize">
+    <Label FontWeight="Bold">Minimise me to receive Hangfire notifications</Label>
+</Window>
