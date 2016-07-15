@@ -4,7 +4,7 @@ Allows an application to monitor HF jobs on the server without opening the dashb
 # Setup
 
 ## Build the Code
-1. Fork the repository
+1. Fork/clone the repository
 2. Build HangToasts.sln
 3. Change the app.config file to point to the SQL database Hangfire is using
 4. Run the exe from the output folder
