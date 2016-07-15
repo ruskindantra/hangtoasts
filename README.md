@@ -10,7 +10,9 @@ Allows an application to monitor HF jobs on the server without opening the dashb
 4. Run the exe from the output folder
 
 ## Download binaries
-TODO
+1. Download the latest binaries from the release section
+2. Change the app.config file to point to the SQL database Hangfire is using
+3. Run the exe
 
 ## Enable notifications
 - The application will minimise to the tray when minimised, enable notifications for the app via Windows 10 notification area customisation
