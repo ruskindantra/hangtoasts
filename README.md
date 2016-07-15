@@ -1,2 +1,4 @@
 # hangtoasts
-A Windows 10 tray notifier for Hangfire jobs
+Allows an application to monitor HF jobs on the server without opening the dashboard.
+
+# Setup
