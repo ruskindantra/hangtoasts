@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Windows;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
@@ -44,8 +43,7 @@ namespace HangToasts
             if (WindowState == WindowState.Minimized)
             {
                 Hide();
-                if (_notifyIcon != null)
-                    _notifyIcon.ShowBalloonTip(2000);
+                _notifyIcon?.ShowBalloonTip(2000);
             }
             else
                 _storedWindowState = WindowState;
@@ -82,7 +80,15 @@ namespace HangToasts
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            _hangfireQueueManager.Initialise();
+            try
+            {
+                _hangfireQueueManager.Initialise();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Cannot initialise HF queue manager\n{ex.Message}", "Error", MessageBoxButton.OK);
+                Close();
+            }
         }
 
         private void HangfireQueueManagerOnChange(object sender, HangfireQueuesChangedEventArgs hangfireQueuesChangedEventArgs)
@@ -94,7 +100,7 @@ namespace HangToasts
             CreateToast(_hangfireQueueManager.ToastRepresentation());
         }
 
-        private bool CreateToast(string queuedJobs)
+        private void CreateToast(string queuedJobs)
         {
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
 
@@ -111,8 +117,6 @@ namespace HangToasts
             _currentToast.Dismissed += Toast_Dismissed;
             _currentToast.Activated += Toast_Activated;
             ToastNotificationManager.CreateToastNotifier(AppId).Show(_currentToast);
-
-            return true;
         }
 
         private void Toast_Activated(ToastNotification sender, object args)
